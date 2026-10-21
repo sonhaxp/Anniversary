@@ -125,6 +125,13 @@ Truy cập trình duyệt: `http://localhost:5500`.
 11. **Tương tác Thả Tim (Heart Burst)**:
     - Nút "Thả tim yêu thương" ở chân trang và chạm vào ảnh Hero sẽ tạo chùm trái tim bay lơ lửng lung linh.
 
+12. **Trang Mini-game Tỏ Tình Meme Gen Z (`tre-trau.html`)**:
+    - **Ý tưởng**: "Tỏ tình online — từ chối là một khái niệm xa xỉ".
+    - **Nút "Không đồng ý" siêu lươn**: Hơn 6 kiểu né tránh bất ngờ (chạy trốn, thu nhỏ, giả vờ đồng ý, rung lắc kịch tính, dịch chuyển tức thời, meme phản ứng).
+    - **14+ Tương tác trêu đùa ngọt ngào**: Xe ôm trọn đời, kèo trà sữa full-topping, dỗ dành siêu cấp, cam kết bảo hành người yêu 10/10, phó nháy riêng, drama quay chậm, hợp đồng tình yêu, v.v.
+    - **Chụp ảnh Giấy chứng nhận tình yêu**: Tạo và tải file PNG trực tiếp trên máy client bằng HTML5 Canvas mà không cần server.
+    - **Bộ tổng hợp âm thanh Web Audio**: Hiệu ứng Pop, Boing, Ding, Fanfare sống động 100% bằng code, không sợ lỗi file âm thanh bên ngoài.
+
 ---
 
 ## 5. HƯỚNG DẪN TÙY CHỈNH KHI CẦN
@@ -132,31 +139,18 @@ Truy cập trình duyệt: `http://localhost:5500`.
 ### Thay đổi tên, ngày yêu, nội dung thư tình:
 Mở file `js/config.js`:
 - Tên bạn nam / bạn nữ: `partnerOne: "Trường Sơn"`, `partnerTwo: "Diễm Quỳnh"`.
-- Ngày bắt đầu yêu / nhắn tin: `anniversaryDate: "2026-06-10"`.
+- Ngày bắt đầu yêu: `anniversaryDate: "2024-10-17"`.
+- Ngày nhắn tin đầu tiên: `firstChatDate: "2024-06-10"`.
 - Nội dung thư tình: Chỉnh sửa các câu trong mảng `CONFIG.letter.content`.
 
-### Thay đổi bài hát:
-1. Thả file nhạc định dạng `.mp3` của bạn vào thư mục `assets/music/` (ví dụ đặt tên là `bai-hat-cua-chung-minh.mp3`).
-2. Mở `js/config.js`, đổi dòng:
-   ```javascript
-   src: "assets/music/bai-hat-cua-chung-minh.mp3",
-   title: "Tên bài hát của bạn",
-   artist: "Tên ca sĩ"
-   ```
+### Truy cập trang Mini-Game:
+- Nhấn vào nút **"Góc vui: Tỏ Tình Lươn Lẹo"** ở cuối trang chính, hoặc truy cập trực tiếp:
+  `http://localhost:5500/tre-trau.html`
+- Trang có nút quay lại album chính bất cứ lúc nào.
 
-### Thêm ảnh mới:
-1. Bạn có thể thêm ảnh mới vào `assets/images/user/`.
-2. Mở `js/data.js` và thêm một mục mới vào mảng `galleryMemories`:
-   ```javascript
-   {
-     id: 17,
-     title: "Tựa đề kỷ niệm",
-     date: "25.10.2026",
-     category: "together", // together | dates | travel | special | moments
-     image: "assets/images/user/ten-anh-moi.jpg",
-     caption: "Mô tả ngắn cảm xúc của hai bạn...",
-     location: "Địa điểm",
-     aspect: "portrait" // portrait | landscape | square
-   }
-   ```
+### Thay đổi bài hát:
+1. Thả file nhạc định dạng `.mp3` của bạn vào thư mục `assets/music/`.
+2. Mở `js/config.js` để thêm hoặc sửa đổi danh sách playlist.
+
 # Anniversary
+

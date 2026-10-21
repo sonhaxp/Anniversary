@@ -1573,6 +1573,29 @@ a {
   display: inline-block;
 }
 
+.btn-game-easter-egg {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 240, 245, 0.95);
+  color: var(--color-wine);
+  border: 1.5px dashed var(--color-wine-light);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-game-easter-egg:hover, .btn-game-easter-egg:active {
+  background: #FFF0F5;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(142, 67, 86, 0.2);
+  color: var(--color-wine-dark);
+}
+
 /* --------------------------------------------------------------------------
    13. I. MUSIC PLAYER FLOATING WIDGET (SLEEK MOBILE DOCK)
    -------------------------------------------------------------------------- */

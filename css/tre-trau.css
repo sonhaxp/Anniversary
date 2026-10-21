@@ -1,0 +1,1480 @@
+/* ==========================================================================
+   TRE-TRAU.CSS — LUXURY ROMANTIC MARRIAGE PROPOSAL & MEME PAGE (VECTOR EDITION)
+   Theme: "Làm Vợ Anh Nhé" — Lucide Vector Icons, Bespoke Diamond Ring & Neo-Glass
+   Couple: Trường Sơn & Diễm Quỳnh (>2 năm yêu nhau)
+   ========================================================================== */
+
+:root {
+  /* Luxury Romantic Color Palette */
+  --c-bg-primary: #FFF2F5;
+  --c-bg-card: rgba(255, 255, 255, 0.94);
+  --c-primary: #FF1E56;
+  --c-primary-gradient: linear-gradient(135deg, #FF1E56 0%, #FF4D79 50%, #FFA07A 100%);
+  --c-primary-glow: 0 12px 32px rgba(255, 30, 86, 0.42);
+  --c-gold: #D97706;
+  --c-gold-gradient: linear-gradient(135deg, #F59E0B 0%, #FBBF24 50%, #F59E0B 100%);
+  --c-purple: #7C3AED;
+  --c-purple-soft: #F3E8FF;
+  --c-text-main: #1E1B2E;
+  --c-text-sub: #5E566E;
+  --c-text-muted: #8E859E;
+  --c-border-card: rgba(255, 215, 225, 0.85);
+  --c-border-soft: #F5E0E8;
+
+  /* Typography */
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-hand: 'Caveat', cursive;
+
+  /* Safe Area */
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+}
+
+/* --------------------------------------------------------------------------
+   1. RESET & BASE
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow-x: hidden;
+  font-family: var(--font-main);
+  color: var(--c-text-main);
+  background-color: var(--c-bg-primary);
+  background: radial-gradient(circle at 20% 15%, #FFF0F5 0%, #FFF5F7 45%, #FBF0F8 80%, #FDF4E7 100%);
+  background-attachment: fixed;
+}
+
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--sat) + 16px) 16px calc(var(--sab) + 20px);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Lucide Vector Icons Standard Sizing */
+[data-lucide] {
+  display: inline-block;
+  vertical-align: middle;
+  stroke-width: 2.2px;
+}
+
+/* Soft Dreamy Ambient Glows */
+.ambient-glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+  animation: glowFloat 14s ease-in-out infinite alternate;
+}
+
+.glow-1 {
+  width: 360px;
+  height: 360px;
+  background: #FFCAD4;
+  top: -80px;
+  left: -80px;
+}
+
+.glow-2 {
+  width: 400px;
+  height: 400px;
+  background: #FFE4D6;
+  bottom: -100px;
+  right: -100px;
+  animation-duration: 18s;
+  animation-delay: -5s;
+}
+
+.glow-3 {
+  width: 320px;
+  height: 320px;
+  background: #F3E8FF;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.35;
+  animation-duration: 22s;
+  animation-delay: -8s;
+}
+
+@keyframes glowFloat {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(35px, 40px, 0) scale(1.12); }
+}
+
+/* Floating Romantic Sparkles Layer */
+.floating-hearts-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.float-item {
+  position: absolute;
+  font-size: 20px;
+  opacity: 0.28;
+  animation: floatDrift 16s infinite linear;
+}
+
+.fi-1 { left: 8%; bottom: -40px; animation-duration: 15s; font-size: 22px; }
+.fi-2 { left: 24%; bottom: -40px; animation-duration: 19s; animation-delay: 3s; font-size: 18px; }
+.fi-3 { left: 78%; bottom: -40px; animation-duration: 17s; animation-delay: 5s; font-size: 16px; }
+.fi-4 { left: 90%; bottom: -40px; animation-duration: 21s; animation-delay: 8s; font-size: 20px; }
+.fi-5 { left: 45%; bottom: -40px; animation-duration: 23s; animation-delay: 11s; font-size: 24px; }
+.fi-6 { left: 62%; bottom: -40px; animation-duration: 18s; animation-delay: 14s; font-size: 19px; }
+
+@keyframes floatDrift {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.35; }
+  90% { opacity: 0.35; }
+  100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   2. TOP BAR
+   -------------------------------------------------------------------------- */
+.top-bar {
+  position: fixed;
+  top: calc(var(--sat) + 12px);
+  left: 0;
+  width: 100%;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.top-bar > * {
+  pointer-events: auto;
+}
+
+.btn-nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 750;
+  color: var(--c-text-main);
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(255, 77, 121, 0.09);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s, color 0.2s;
+}
+
+.nav-icon-svg {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+}
+
+.btn-nav-back:hover {
+  transform: translateY(-2px);
+  background: #FFFFFF;
+  color: var(--c-primary);
+}
+
+.btn-icon-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  color: var(--c-text-main);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(255, 77, 121, 0.09);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s;
+  touch-action: manipulation;
+}
+
+.btn-icon-pill [data-lucide] {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-icon-pill:active {
+  transform: scale(0.92);
+}
+
+/* --------------------------------------------------------------------------
+   3. APP CONTAINER & CARDS
+   -------------------------------------------------------------------------- */
+.app-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 418px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.screen[hidden] {
+  display: none !important;
+}
+
+.card-frame {
+  width: 100%;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 246, 249, 0.92) 100%);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1.5px solid var(--c-border-card);
+  border-radius: 34px;
+  box-shadow:
+    0 24px 64px rgba(230, 40, 85, 0.12),
+    0 8px 24px rgba(245, 158, 11, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  padding: 32px 22px 26px;
+  text-align: center;
+  position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   4. SCREEN 1: INTRO SCREEN
+   -------------------------------------------------------------------------- */
+.intro-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  background: rgba(255, 30, 86, 0.08);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 750;
+  color: var(--c-primary);
+  margin-bottom: 16px;
+  border: 1px solid rgba(255, 30, 86, 0.15);
+}
+
+.pill-svg-icon {
+  width: 14px;
+  height: 14px;
+  stroke: var(--c-primary);
+}
+
+.intro-title {
+  font-size: 1.55rem;
+  font-weight: 850;
+  line-height: 1.25;
+  color: var(--c-text-main);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.intro-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--c-text-sub);
+  margin-bottom: 22px;
+  padding: 0 4px;
+}
+
+.intro-sticker-wrap {
+  position: relative;
+  width: 124px;
+  height: 124px;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cute-char-avatar {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  background: radial-gradient(circle at 35% 35%, #FFFDF5 0%, #FFE4E6 70%, #FECDD3 100%);
+  border-radius: 50%;
+  border: 4px solid #FFFFFF;
+  box-shadow: 0 10px 28px rgba(255, 30, 86, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: cuteBounce 2.5s ease-in-out infinite;
+}
+
+.bespoke-ring-svg {
+  width: 68px;
+  height: 68px;
+}
+
+.ring-glow-halo {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px dashed rgba(245, 158, 11, 0.45);
+  animation: haloSpin 12s linear infinite;
+}
+
+@keyframes haloSpin {
+  to { transform: rotate(360deg); }
+}
+
+.blush {
+  position: absolute;
+  width: 14px;
+  height: 8px;
+  background: #FF4D79;
+  border-radius: 50%;
+  opacity: 0.45;
+  bottom: 24px;
+}
+.blush-left { left: 18px; }
+.blush-right { right: 18px; }
+
+@keyframes cuteBounce {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(0, -6px, 0) scale(1.04); }
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 18px;
+  pointer-events: none;
+  animation: sparkleFloat 2.2s infinite ease-in-out alternate;
+}
+.sp-1 { top: 0; right: 4px; }
+.sp-2 { bottom: 6px; left: 6px; animation-delay: 0.7s; }
+.sp-3 { top: 38%; left: -8px; animation-delay: 1.3s; font-size: 16px; }
+
+@keyframes sparkleFloat {
+  from { transform: translateY(0) scale(0.9); }
+  to { transform: translateY(-8px) scale(1.15) rotate(12deg); }
+}
+
+.btn-cta-main {
+  width: 100%;
+  padding: 16px 24px;
+  background: var(--c-primary-gradient);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 999px;
+  font-size: 1.02rem;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+  box-shadow: var(--c-primary-glow);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s;
+  touch-action: manipulation;
+}
+
+.btn-arrow-svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.2s;
+}
+
+.btn-cta-main:hover .btn-arrow-svg {
+  transform: translateX(4px);
+}
+
+.btn-cta-main:active {
+  transform: scale(0.97);
+}
+
+/* --------------------------------------------------------------------------
+   5. SCREEN 2: GAME / PROPOSAL SCREEN
+   -------------------------------------------------------------------------- */
+.game-score-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--c-border-card);
+  border-radius: 999px;
+  padding: 8px 18px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 18px rgba(255, 77, 121, 0.09);
+  font-size: 0.82rem;
+  font-weight: 750;
+  color: var(--c-text-sub);
+}
+
+.score-pill-icon {
+  width: 16px;
+  height: 16px;
+  stroke: #F97316;
+  fill: #FDE047;
+}
+
+.game-score-pill .dodge-stat {
+  color: var(--c-primary);
+  font-weight: 900;
+}
+
+.confession-card {
+  position: relative;
+  padding-top: 38px;
+}
+
+/* Floating Ring Element atop Card (Bespoke Luxury Vector) */
+.card-floating-ring {
+  position: absolute;
+  top: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FFFDF5 0%, #FFF1F3 50%, #FFE4E6 100%);
+  border: 3.5px solid #FFFFFF;
+  box-shadow:
+    0 10px 28px rgba(245, 158, 11, 0.32),
+    0 4px 12px rgba(255, 30, 86, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ringBob 3s ease-in-out infinite;
+}
+
+.bespoke-ring-svg-header {
+  width: 48px;
+  height: 48px;
+}
+
+@keyframes ringBob {
+  0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
+  50% { transform: translateX(-50%) translateY(-6px) scale(1.06); }
+}
+
+.confession-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  background: rgba(217, 119, 6, 0.09);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 850;
+  color: #B45309;
+  margin-bottom: 12px;
+}
+
+.badge-icon-svg {
+  width: 14px;
+  height: 14px;
+  stroke: #B45309;
+}
+
+.confession-title {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  font-weight: 900;
+  line-height: 1.28;
+  background: linear-gradient(135deg, #E11D48 0%, #FF1E56 50%, #BE123C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+
+.confession-content {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--c-text-main);
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   MODERN PERKS 2x2 GRID (CARD STYLE WITH VECTOR ICONS)
+   -------------------------------------------------------------------------- */
+.proposal-perks-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 14px;
+  text-align: left;
+}
+
+.perk-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(255, 215, 225, 0.85);
+  border-radius: 12px;
+  padding: 8px 9px;
+  box-shadow: 0 3px 10px rgba(255, 77, 121, 0.04);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.perk-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(255, 77, 121, 0.08);
+}
+
+.perk-icon-wrap {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.perk-icon-wrap [data-lucide] {
+  width: 16px;
+  height: 16px;
+}
+
+.perk-amber {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.perk-rose {
+  background: #FFE4E6;
+  color: #E11D48;
+}
+
+.perk-purple {
+  background: #F3E8FF;
+  color: #7C3AED;
+}
+
+.perk-emerald {
+  background: #D1FAE5;
+  color: #059669;
+}
+
+.perk-text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  overflow: hidden;
+  flex: 1;
+}
+
+.perk-title {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--c-text-main);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.perk-sub {
+  font-size: 0.65rem;
+  color: var(--c-text-muted);
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.confession-ps {
+  font-size: 0.98rem;
+  line-height: 1.4;
+  color: var(--c-text-muted);
+  font-family: var(--font-hand);
+  margin-bottom: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   6. SEAMLESS BUTTON ARENA
+   -------------------------------------------------------------------------- */
+.button-arena {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 145px;
+  height: 145px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255, 240, 245, 0.65) 0%, rgba(255, 248, 240, 0.55) 100%);
+  border: 1.5px dashed rgba(255, 90, 130, 0.35);
+  box-shadow: inset 0 2px 8px rgba(255, 77, 121, 0.04);
+  overflow: hidden;
+  padding: 10px 12px;
+}
+
+/* Agree Button (Ultra-Luxury CTA with Vector Ring & Glow) */
+.btn-agree {
+  position: relative;
+  z-index: 20;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #FF1E56 0%, #FF3D71 45%, #FFA033 100%);
+  color: #FFFFFF;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+  white-space: nowrap !important;
+  flex-shrink: 0;
+  box-shadow:
+    0 10px 30px rgba(255, 30, 86, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.06),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  overflow: hidden;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s;
+  animation: agreePulseGlow 2.4s infinite ease-in-out;
+  touch-action: manipulation;
+}
+
+.btn-agree-text {
+  white-space: nowrap !important;
+  display: inline-block;
+}
+
+.btn-ring-svg-wrap {
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-mini-ring-svg {
+  width: 17px;
+  height: 17px;
+  animation: ringSparkle 2s infinite ease-in-out alternate;
+}
+
+.btn-heart-svg {
+  width: 15px;
+  height: 15px;
+  stroke: #FFFFFF;
+  fill: #FFFFFF;
+  animation: heartThrob 1.2s infinite ease-in-out;
+}
+
+@keyframes heartThrob {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.22); }
+}
+
+@keyframes ringSparkle {
+  from { transform: scale(1) rotate(-8deg); }
+  to { transform: scale(1.15) rotate(8deg); }
+}
+
+.btn-shimmer-sweep {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-20deg);
+  animation: shimmerSweep 3s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes shimmerSweep {
+  0%, 40% { left: -100%; }
+  70%, 100% { left: 160%; }
+}
+
+.btn-agree:active {
+  transform: scale(0.96);
+}
+
+@keyframes agreePulseGlow {
+  0%, 100% {
+    box-shadow: 0 8px 24px rgba(255, 30, 86, 0.38);
+  }
+  50% {
+    box-shadow: 0 12px 32px rgba(255, 30, 86, 0.58), 0 0 18px rgba(251, 191, 36, 0.35);
+  }
+}
+
+/* Reject Button (Neo-morphic Frosted Pill with Lucide Ghost Vector) */
+.btn-reject {
+  position: absolute;
+  z-index: 30;
+  padding: 11px 18px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #4A3E56;
+  border: 1.5px solid rgba(244, 180, 200, 0.85);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 750;
+  white-space: nowrap !important;
+  flex-shrink: 0;
+  box-shadow: 0 6px 18px rgba(90, 60, 110, 0.08);
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s, background 0.2s, border-color 0.2s;
+  will-change: transform, left, top;
+  touch-action: manipulation;
+}
+
+.btn-ghost-icon {
+  width: 16px;
+  height: 16px;
+  stroke: #8E7A99;
+}
+
+.btn-reject:active {
+  transform: scale(0.94);
+}
+
+.btn-reject.is-shaking {
+  animation: dramaticWobble 0.35s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.btn-reject.is-fake-agree {
+  background: #FEF3C7 !important;
+  color: #B45309 !important;
+  border-color: #FCD34D !important;
+}
+
+.btn-reject.is-tiny {
+  transform: scale(0.4) !important;
+  opacity: 0.7;
+}
+
+@keyframes dramaticWobble {
+  10%, 90% { transform: translate3d(-3px, 0, 0) rotate(-2deg); }
+  20%, 80% { transform: translate3d(4px, 0, 0) rotate(2deg); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0) rotate(-3deg); }
+  40%, 60% { transform: translate3d(4px, 0, 0) rotate(3deg); }
+}
+
+/* --------------------------------------------------------------------------
+   7. MEME POPUPS (FROSTED GLASS MODALS WITH VECTOR AVATARS)
+   -------------------------------------------------------------------------- */
+.meme-overlay-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.meme-popup {
+  pointer-events: auto;
+  position: relative;
+  width: 100%;
+  max-width: 370px;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1.5px solid rgba(255, 30, 86, 0.25);
+  border-radius: 28px;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.18),
+    0 0 0 100vmax rgba(25, 18, 30, 0.35);
+  padding: 24px 20px 20px;
+  text-align: center;
+  animation: memeSpringIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes memeSpringIn {
+  from { opacity: 0; transform: scale(0.85) translateY(16px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.meme-popup.is-dismissing {
+  animation: memeSpringOut 0.22s ease-in forwards;
+}
+
+@keyframes memeSpringOut {
+  to { opacity: 0; transform: scale(0.9) translateY(-12px); }
+}
+
+.meme-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(255, 30, 86, 0.08);
+  color: var(--c-primary);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.meme-badge [data-lucide] {
+  width: 14px;
+  height: 14px;
+}
+
+.meme-icon-avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 3.5px solid #FFFFFF;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 26px rgba(255, 30, 86, 0.16);
+  animation: iconFloat 1.4s ease-in-out infinite alternate;
+}
+
+.avatar-rose {
+  background: linear-gradient(135deg, #FFE4E6 0%, #FECDD3 100%);
+  color: #E11D48;
+}
+
+.avatar-amber {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  color: #D97706;
+}
+
+.avatar-purple {
+  background: linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%);
+  color: #7C3AED;
+}
+
+.avatar-emerald {
+  background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+  color: #059669;
+}
+
+.avatar-blue {
+  background: linear-gradient(135deg, #E0F2FE 0%, #BAE6FD 100%);
+  color: #0284C7;
+}
+
+.meme-svg-icon {
+  width: 32px;
+  height: 32px;
+}
+
+@keyframes iconFloat {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px) scale(1.06); }
+}
+
+.meme-title {
+  font-size: 1.2rem;
+  font-weight: 850;
+  color: var(--c-text-main);
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.meme-body {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--c-text-sub);
+  margin-bottom: 18px;
+}
+
+.meme-btn-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 12px 26px;
+  background: var(--c-primary-gradient);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 30, 86, 0.3);
+  transition: transform 0.15s;
+  touch-action: manipulation;
+}
+
+.meme-btn-close [data-lucide] {
+  width: 15px;
+  height: 15px;
+}
+
+.meme-btn-close:active {
+  transform: scale(0.96);
+}
+
+/* Drama Indian Zoom */
+.screen.is-drama {
+  animation: dramaPulse 0.75s ease-in-out 3;
+}
+
+@keyframes dramaPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04) rotate(1deg); filter: saturate(140%); }
+  100% { transform: scale(1); }
+}
+
+/* --------------------------------------------------------------------------
+   8. SCREEN 3: SUCCESS & LOVE MARRIAGE CERTIFICATE
+   -------------------------------------------------------------------------- */
+.confetti-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 150;
+}
+
+.success-header-sticker {
+  margin-bottom: 14px;
+}
+
+.success-badge-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFE4E6 0%, #FECDD3 100%);
+  border: 4px solid #FFFFFF;
+  box-shadow: 0 10px 28px rgba(255, 30, 86, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  color: #E11D48;
+  animation: trophyWiggle 1.4s ease-in-out infinite alternate;
+}
+
+.success-badge-icon [data-lucide] {
+  width: 36px;
+  height: 36px;
+}
+
+@keyframes trophyWiggle {
+  from { transform: scale(1) rotate(-4deg); }
+  to { transform: scale(1.1) rotate(4deg); }
+}
+
+.success-title {
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  font-weight: 900;
+  line-height: 1.25;
+  color: var(--c-primary);
+  margin-bottom: 10px;
+}
+
+.success-desc {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--c-text-main);
+  margin-bottom: 16px;
+}
+
+.success-alert-box {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 14px;
+  padding: 9px 14px;
+  font-size: 0.8rem;
+  font-weight: 750;
+  color: #047857;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  justify-content: center;
+}
+
+.icon-trophy {
+  width: 16px;
+  height: 16px;
+  stroke: #059669;
+}
+
+/* Royal Marriage Certificate Preview Box */
+.certificate-preview-box {
+  width: 100%;
+  background: linear-gradient(145deg, #FFFDF8 0%, #FFF5F7 100%);
+  border: 2px solid #F59E0B;
+  border-radius: 22px;
+  padding: 22px 18px;
+  box-shadow: 0 12px 32px rgba(245, 158, 11, 0.12);
+  margin-bottom: 22px;
+  position: relative;
+  text-align: center;
+}
+
+.cert-stamp {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  border: 2px solid #DC2626;
+  color: #DC2626;
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 4px 10px;
+  border-radius: 8px;
+  transform: rotate(12deg);
+  letter-spacing: 0.05em;
+  background: rgba(254, 226, 226, 0.6);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cert-stamp [data-lucide] {
+  width: 12px;
+  height: 12px;
+}
+
+.cert-header-sub {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #B45309;
+  margin-bottom: 4px;
+}
+
+.cert-title {
+  font-size: 0.85rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  color: #991B1B;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.cert-couple-names {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: var(--c-primary);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cert-heart-icon {
+  display: inline-flex;
+  color: #F59E0B;
+}
+
+.cert-heart-icon [data-lucide] {
+  width: 22px;
+  height: 22px;
+}
+
+.cert-quote {
+  font-size: 0.82rem;
+  color: var(--c-text-sub);
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.cert-commitment-tags {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.cert-commitment-tags span {
+  font-size: 0.72rem;
+  font-weight: 750;
+  color: #047857;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cert-commitment-tags [data-lucide] {
+  width: 12px;
+  height: 12px;
+}
+
+.cert-date {
+  font-size: 0.72rem;
+  font-weight: 750;
+  color: #9A3412;
+}
+
+/* Success Actions */
+.success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.btn-action-primary {
+  width: 100%;
+  padding: 15px 22px;
+  background: var(--c-primary-gradient);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 850;
+  box-shadow: var(--c-primary-glow);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  touch-action: manipulation;
+}
+
+.btn-action-primary [data-lucide] {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-action-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-action-secondary {
+  width: 100%;
+  padding: 13px 20px;
+  background: rgba(124, 58, 237, 0.08);
+  color: var(--c-purple);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s, transform 0.2s;
+  touch-action: manipulation;
+}
+
+.btn-action-secondary [data-lucide] {
+  width: 17px;
+  height: 17px;
+}
+
+.btn-action-secondary:active {
+  transform: scale(0.97);
+}
+
+.btn-action-replay {
+  width: 100%;
+  padding: 12px 18px;
+  background: transparent;
+  color: var(--c-text-sub);
+  border: 1px solid var(--c-border-soft);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 750;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: background 0.2s, color 0.2s;
+  touch-action: manipulation;
+}
+
+.btn-action-replay [data-lucide] {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-action-replay:hover {
+  background: #FFFFFF;
+  color: var(--c-primary);
+}
+
+.btn-action-back-album {
+  margin-top: 4px;
+  font-size: 0.82rem;
+  font-weight: 750;
+  color: var(--c-text-muted);
+  text-decoration: none;
+  padding: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: color 0.2s;
+}
+
+.btn-action-back-album [data-lucide] {
+  width: 14px;
+  height: 14px;
+}
+
+.btn-action-back-album:hover {
+  color: var(--c-primary);
+}
+
+/* --------------------------------------------------------------------------
+   9. MODAL GỬI LỜI NHẮN
+   -------------------------------------------------------------------------- */
+.custom-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 15, 26, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.custom-modal-backdrop[hidden] {
+  display: none !important;
+}
+
+.custom-modal-box {
+  width: 100%;
+  max-width: 370px;
+  background: #FFFFFF;
+  border-radius: 28px;
+  padding: 24px 20px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+  text-align: center;
+  animation: modalIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-header-icon-box {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFE4E6 0%, #FECDD3 100%);
+  color: var(--c-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+}
+
+.modal-header-icon-box [data-lucide] {
+  width: 28px;
+  height: 28px;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 850;
+  color: var(--c-text-main);
+  margin-bottom: 6px;
+}
+
+.modal-subtitle {
+  font-size: 0.82rem;
+  color: var(--c-text-sub);
+  margin-bottom: 16px;
+}
+
+.modal-textarea {
+  width: 100%;
+  min-height: 95px;
+  border: 1.5px solid var(--c-border-soft);
+  border-radius: 16px;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  color: var(--c-text-main);
+  background: #FAF8FA;
+  resize: none;
+  margin-bottom: 16px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.modal-textarea:focus {
+  border-color: var(--c-primary);
+  background: #FFFFFF;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-btn-confirm {
+  flex: 1.4;
+  padding: 13px;
+  background: var(--c-primary-gradient);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 850;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 30, 86, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.modal-btn-confirm [data-lucide] {
+  width: 15px;
+  height: 15px;
+}
+
+.modal-btn-confirm:active {
+  transform: scale(0.96);
+}
+
+.modal-btn-cancel {
+  flex: 1;
+  padding: 13px;
+  background: #F1F5F9;
+  color: #475569;
+  border: none;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.modal-btn-cancel [data-lucide] {
+  width: 15px;
+  height: 15px;
+}
+
+/* Toast Message */
+.toast-msg {
+  position: fixed;
+  bottom: calc(var(--sab) + 24px);
+  left: 50%;
+  transform: translateX(-50%) translateY(24px);
+  background: #1E1B2E;
+  color: #FFFFFF;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 750;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.24s, transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-msg.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   10. MOBILE BREAKPOINT OPTIMIZATIONS
+   -------------------------------------------------------------------------- */
+@media (max-width: 400px) {
+  .intro-title, .confession-title, .success-title {
+    font-size: 1.42rem;
+  }
+  .card-frame {
+    padding: 26px 14px 20px;
+    border-radius: 28px;
+  }
+  .proposal-perks-box {
+    gap: 6px;
+  }
+  .perk-card {
+    padding: 7px 8px;
+  }
+  .button-arena {
+    min-height: 140px;
+    height: 140px;
+    gap: 8px;
+    padding: 8px 10px;
+  }
+  .btn-agree {
+    padding: 11px 16px;
+    font-size: 0.86rem;
+  }
+  .btn-reject {
+    padding: 10px 14px;
+    font-size: 0.82rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

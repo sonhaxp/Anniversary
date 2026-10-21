@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Làm Vợ Anh Nhé? 💍 — Sơn & Quỳnh | Lời Cầu Hôn Đặc Biệt</title>
+  <meta name="description" content="Mini-game cầu hôn ngọt ngào và hóm hỉnh dành riêng cho Diễm Quỳnh sau hơn 2 năm yêu nhau. Bấm vào đây thì chỉ có một con đường về chung một nhà thôi nhé!">
+  <meta property="og:title" content="Sơn có điều cực kỳ quan trọng muốn hỏi Quỳnh nè... 💍💌">
+  <meta property="og:description" content="Làm người yêu lâu rồi, em có đồng ý làm Vợ anh không?">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Playfair Display & Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet riêng của trang tre-trau -->
+  <link rel="stylesheet" href="css/tre-trau.css">
+</head>
+<body>
+
+  <!-- Ambient Dreamy Background Elements -->
+  <div class="ambient-glow glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow glow-2" aria-hidden="true"></div>
+  <div class="ambient-glow glow-3" aria-hidden="true"></div>
+
+  <!-- Floating Romantic Sparkles -->
+  <div class="floating-hearts-layer" aria-hidden="true">
+    <span class="float-item fi-1">💍</span>
+    <span class="float-item fi-2">💖</span>
+    <span class="float-item fi-3">✨</span>
+    <span class="float-item fi-4">🌸</span>
+    <span class="float-item fi-5">💎</span>
+    <span class="float-item fi-6">💕</span>
+  </div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas" class="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- Top Bar Controls -->
+  <header class="top-bar">
+    <a href="index.html" class="btn-nav-back" title="Quay lại Album tình yêu">
+      <i data-lucide="arrow-left" class="nav-icon-svg"></i>
+      <span>Album Kỷ Niệm</span>
+    </a>
+    <div class="top-actions">
+      <button id="btn-sound-toggle" class="btn-icon-pill" type="button" aria-label="Bật hoặc tắt âm thanh" title="Bật/Tắt âm thanh">
+        <span id="sound-icon"><i data-lucide="volume-2"></i></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main App Container -->
+  <main class="app-container">
+
+    <!-- ========================================================= -->
+    <!-- 1. MÀN HÌNH MỞ ĐẦU (INTRO SCREEN) -->
+    <!-- ========================================================= -->
+    <section id="intro-screen" class="screen">
+      <div class="card-frame intro-card">
+        <div class="intro-pill">
+          <i data-lucide="sparkles" class="pill-svg-icon"></i>
+          <span>Hết Hạn Hợp Đồng Người Yêu</span>
+        </div>
+
+        <h1 class="intro-title">Ê QUỲNH ƠI, NÂNG CẤP LÊN LEVEL MỚI THÔI!</h1>
+
+        <p class="intro-desc">
+          Yêu nhau hơn 2 năm rồi, chức vụ "Bạn gái" chính thức hết hạn sử dụng. Giờ hệ thống bắt buộc phải nâng cấp lên gói VIP trọn đời: <strong>LÀM VỢ ANH</strong>! Xem điều khoản ngay không là bị phạt nha! 😏
+        </p>
+
+        <!-- Cute animated character with bespoke SVG ring -->
+        <div class="intro-sticker-wrap">
+          <div class="cute-char-avatar">
+            <svg class="bespoke-ring-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="ringGoldGradIntro" x1="12" y1="28" x2="52" y2="58" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#FEF08A"/>
+                  <stop offset="35%" stop-color="#F59E0B"/>
+                  <stop offset="70%" stop-color="#D97706"/>
+                  <stop offset="100%" stop-color="#FBBF24"/>
+                </linearGradient>
+                <linearGradient id="gemGradIntro" x1="22" y1="8" x2="42" y2="28" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#FFFFFF"/>
+                  <stop offset="40%" stop-color="#E0F2FE"/>
+                  <stop offset="75%" stop-color="#7DD3FC"/>
+                  <stop offset="100%" stop-color="#38BDF8"/>
+                </linearGradient>
+              </defs>
+              <ellipse cx="32" cy="57" rx="14" ry="3" fill="rgba(0,0,0,0.08)"/>
+              <circle cx="32" cy="38" r="17" stroke="url(#ringGoldGradIntro)" stroke-width="4" fill="none"/>
+              <circle cx="32" cy="38" r="13.5" stroke="rgba(255,255,255,0.4)" stroke-width="1" fill="none"/>
+              <path d="M26 23 L32 28 L38 23" stroke="url(#ringGoldGradIntro)" stroke-width="2.8" stroke-linecap="round"/>
+              <polygon points="32,9 43,18 39,27 25,27 21,18" fill="url(#gemGradIntro)" stroke="#FFFFFF" stroke-width="1.2"/>
+              <polygon points="32,9 26,18 38,18" fill="#FFFFFF" fill-opacity="0.85"/>
+              <polygon points="26,18 32,27 38,18" fill="#0284C7" fill-opacity="0.45"/>
+              <circle cx="28" cy="14" r="1.8" fill="#FFFFFF"/>
+              <path d="M42 8 L44 5 L46 8 L44 11 Z" fill="#FBBF24"/>
+            </svg>
+            <div class="ring-glow-halo"></div>
+            <div class="blush blush-left"></div>
+            <div class="blush blush-right"></div>
+          </div>
+          <span class="sparkle sp-1">✨</span>
+          <span class="sparkle sp-2">💖</span>
+          <span class="sparkle sp-3">👑</span>
+        </div>
+
+        <button id="btn-start" class="btn-cta-main" type="button">
+          <span>XEM ĐIỀU KHOẢN LÀM VỢ</span>
+          <i data-lucide="arrow-right" class="btn-arrow-svg"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- 2. MÀN HÌNH CẦU HÔN CHÍNH (PROPOSAL SCREEN) -->
+    <!-- ========================================================= -->
+    <section id="game-screen" class="screen" hidden>
+      <!-- Sleek Score Badge -->
+      <div class="game-score-pill">
+        <i data-lucide="flame" class="score-pill-icon"></i>
+        <span>Quỳnh chối đây đẩy: <strong id="dodge-count" class="dodge-stat">0</strong> lần</span>
+      </div>
+
+      <!-- Proposal Card -->
+      <div class="card-frame confession-card">
+        <!-- Floating Proposal Ring Badge on Card Top (Bespoke Luxury Vector) -->
+        <div class="card-floating-ring" aria-hidden="true">
+          <svg class="bespoke-ring-svg-header" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="ringGoldGradHeader" x1="12" y1="28" x2="52" y2="58" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FEF08A"/>
+                <stop offset="35%" stop-color="#F59E0B"/>
+                <stop offset="70%" stop-color="#D97706"/>
+                <stop offset="100%" stop-color="#FBBF24"/>
+              </linearGradient>
+              <linearGradient id="gemGradHeader" x1="22" y1="8" x2="42" y2="28" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="40%" stop-color="#E0F2FE"/>
+                <stop offset="75%" stop-color="#7DD3FC"/>
+                <stop offset="100%" stop-color="#38BDF8"/>
+              </linearGradient>
+            </defs>
+            <circle cx="32" cy="38" r="17" stroke="url(#ringGoldGradHeader)" stroke-width="4.2" fill="none"/>
+            <circle cx="32" cy="38" r="13.5" stroke="rgba(255,255,255,0.4)" stroke-width="1" fill="none"/>
+            <path d="M26 23 L32 28 L38 23" stroke="url(#ringGoldGradHeader)" stroke-width="3" stroke-linecap="round"/>
+            <polygon points="32,9 43,18 39,27 25,27 21,18" fill="url(#gemGradHeader)" stroke="#FFFFFF" stroke-width="1.2"/>
+            <polygon points="32,9 26,18 38,18" fill="#FFFFFF" fill-opacity="0.85"/>
+            <polygon points="26,18 32,27 38,18" fill="#0284C7" fill-opacity="0.45"/>
+            <circle cx="28" cy="14" r="1.8" fill="#FFFFFF"/>
+            <path d="M42 8 L44 5 L46 8 L44 11 Z" fill="#FBBF24"/>
+          </svg>
+        </div>
+
+        <div class="confession-badge">
+          <i data-lucide="crown" class="badge-icon-svg"></i>
+          <span>ĐƠN NÂNG CẤP CHỨC VỤ ĐẶC BIỆT</span>
+        </div>
+
+        <h2 class="confession-title">LÀM VỢ ANH NHÉ,<br>QUỲNH ƠI? 💍</h2>
+
+        <p class="confession-content">
+          Làm người yêu hơn 2 năm rồi, nay anh chính thức thăng chức cho Quỳnh lên làm <strong>Nóc Nhà Quyền Lực Trọn Đời</strong> của Sơn nha!
+        </p>
+
+        <!-- 4 Modern Perks Feature Cards with crisp Lucide Vector Icons -->
+        <div class="proposal-perks-box">
+          <div class="perk-card">
+            <div class="perk-icon-wrap perk-amber">
+              <i data-lucide="wallet"></i>
+            </div>
+            <div class="perk-text-wrap">
+              <span class="perk-title">Nộp 100% lương</span>
+              <span class="perk-sub">Mùng 10 ting ting</span>
+            </div>
+          </div>
+
+          <div class="perk-card">
+            <div class="perk-icon-wrap perk-rose">
+              <i data-lucide="sparkles"></i>
+            </div>
+            <div class="perk-text-wrap">
+              <span class="perk-title">Bao việc nhà</span>
+              <span class="perk-sub">Rửa bát, nấu ăn</span>
+            </div>
+          </div>
+
+          <div class="perk-card">
+            <div class="perk-icon-wrap perk-purple">
+              <i data-lucide="coffee"></i>
+            </div>
+            <div class="perk-text-wrap">
+              <span class="perk-title">Mát-xa cưng chiều</span>
+              <span class="perk-sub">Phục vụ 24/7</span>
+            </div>
+          </div>
+
+          <div class="perk-card">
+            <div class="perk-icon-wrap perk-emerald">
+              <i data-lucide="shield-check"></i>
+            </div>
+            <div class="perk-text-wrap">
+              <span class="perk-title">Luôn nhận lỗi</span>
+              <span class="perk-sub">Bảo hành trọn đời</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="confession-ps">
+          (P/S: Nút bên phải hôm nay bướng lắm, em đừng phí công né làm gì nhé 😉)
+        </p>
+
+        <!-- Sân chơi hai nút bấm tự nhiên, thoáng đãng, sang trọng -->
+        <div id="button-arena" class="button-arena">
+          <!-- Nút ĐỒNG Ý CƯỚI (Ultra-Luxury CTA với SVG Ring, Shimmer Sweep, Glowing Heart) -->
+          <button id="btn-agree" class="btn-agree" type="button" aria-label="Đồng ý làm vợ anh">
+            <span class="btn-ring-svg-wrap">
+              <svg class="btn-mini-ring-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="14" r="6.5" stroke="#FFF" stroke-width="2.2"/>
+                <path d="M12 4 L14.5 7 L12 8.5 L9.5 7 Z" fill="#FDE68A" stroke="#FFF" stroke-width="1.2"/>
+              </svg>
+            </span>
+            <span class="btn-agree-text">DẠ EM ĐỒNG Ý CƯỚI!</span>
+            <i data-lucide="heart" class="btn-heart-svg"></i>
+            <span class="btn-shimmer-sweep" aria-hidden="true"></span>
+          </button>
+
+          <!-- Nút TỪ CHỐI (Kính mờ Neo-morphic với Icon Ghost vui nhộn) -->
+          <button id="btn-reject" class="btn-reject" type="button" aria-label="Từ chối làm vợ">
+            <i data-lucide="ghost" class="btn-ghost-icon"></i>
+            <span id="btn-reject-text">CHƯA THÍCH ĐÂU</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- 3. MÀN HÌNH THÀNH CÔNG (SUCCESS SCREEN) -->
+    <!-- ========================================================= -->
+    <section id="success-screen" class="screen" hidden>
+      <div class="card-frame success-card">
+        <div class="success-header-sticker">
+          <div class="success-badge-icon">
+            <i data-lucide="heart-handshake"></i>
+          </div>
+        </div>
+
+        <h2 class="success-title">CHÍNH THỨC VỀ CHUNG MỘT NHÀ! 💖</h2>
+
+        <p class="success-desc">
+          Chúc mừng <strong id="success-crush">Diễm Quỳnh</strong> đã chốt đơn thành công chú rể <strong id="success-sender">Trường Sơn</strong>! Kể từ hôm nay thăng chức <strong>NÓC NHÀ TRỌN ĐỜI</strong>, hàng đã giao miễn hoàn đổi dưới mọi hình thức!
+        </p>
+
+        <div class="success-alert-box">
+          <i data-lucide="trophy" class="icon-trophy"></i>
+          <span>Kèo này Sơn rước được Nóc Nhà xịn nhất quả đất rồi!</span>
+        </div>
+
+        <!-- Giấy Đăng Ký Kết Hôn Tình Yêu trang trọng & thẩm mỹ -->
+        <div id="love-certificate" class="certificate-preview-box">
+          <div class="cert-stamp">
+            <i data-lucide="check-check"></i>
+            <span>CHÍNH THỨC CÓ CHỒNG</span>
+          </div>
+          <div class="cert-header-sub">CỘNG HÒA TÌNH YÊU VIỆT NAM</div>
+          <div class="cert-title">GIẤY ĐĂNG KÝ KẾT HÔN & BỔ NHIỆM NÓC NHÀ</div>
+          <div class="cert-couple-names">
+            <span id="cert-sender">Trường Sơn</span>
+            <span class="cert-heart-icon"><i data-lucide="gem"></i></span>
+            <span id="cert-crush">Diễm Quỳnh</span>
+          </div>
+          <p class="cert-quote">"Yêu nhau từ thuở hẹn hò — Kể từ hôm nay em là vợ anh"</p>
+          <div class="cert-commitment-tags">
+            <span><i data-lucide="check"></i> Lương nộp đủ</span>
+            <span><i data-lucide="check"></i> Bát đĩa sạch bóng</span>
+            <span><i data-lucide="check"></i> Vợ luôn luôn đúng</span>
+          </div>
+          <div id="cert-date" class="cert-date">Cấp ngày: 21/10/2026</div>
+        </div>
+
+        <!-- Cụm nút hành động tinh gọn với Vector Icon Lucide -->
+        <div class="success-actions">
+          <button id="btn-download-cert" class="btn-action-primary" type="button">
+            <i data-lucide="download"></i>
+            <span>Lưu Giấy Đăng Ký Kết Hôn</span>
+          </button>
+
+          <button id="btn-open-message-modal" class="btn-action-secondary" type="button">
+            <i data-lucide="send"></i>
+            <span>Gửi tin nhắn chốt đơn cho Chồng</span>
+          </button>
+
+          <button id="btn-replay" class="btn-action-replay" type="button">
+            <i data-lucide="rotate-ccw"></i>
+            <span>Cầu hôn lại lần nữa</span>
+          </button>
+
+          <a href="index.html" class="btn-action-back-album">
+            <i data-lucide="arrow-left"></i>
+            <span>Trở về Album Kỷ Niệm</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================= -->
+  <!-- 4. MEME OVERLAY CONTAINER (14+ EVENTS DYNAMIC POPUP) -->
+  <!-- ========================================================= -->
+  <div id="meme-overlay-container" class="meme-overlay-container" aria-live="polite"></div>
+
+  <!-- ========================================================= -->
+  <!-- 5. MODAL GỬI LỜI NHẮN NGỌT NGÀO -->
+  <!-- ========================================================= -->
+  <div id="message-modal" class="custom-modal-backdrop" hidden>
+    <div class="custom-modal-box">
+      <div class="modal-header-icon-box">
+        <i data-lucide="mail-heart"></i>
+      </div>
+      <h3 class="modal-title">Gửi Lời Nhắn Chốt Đơn Cho Sơn</h3>
+      <p class="modal-subtitle">Sao chép tin nhắn này để gửi cho anh Sơn chốt kèo rước dâu ngay nhé!</p>
+
+      <textarea id="message-textarea" class="modal-textarea" rows="4"></textarea>
+
+      <div class="modal-actions">
+        <button id="btn-close-message-modal" class="modal-btn-cancel" type="button">
+          <i data-lucide="x"></i>
+          <span>Đóng</span>
+        </button>
+        <button id="btn-copy-message" class="modal-btn-confirm" type="button">
+          <i data-lucide="copy"></i>
+          <span>Sao chép tin nhắn</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast-msg" class="toast-msg" role="status" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="js/lucide.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/tre-trau.js"></script>
+</body>
+</html>

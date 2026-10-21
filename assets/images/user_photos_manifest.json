@@ -1,0 +1,82 @@
+[
+  {
+    "origFile": "IMG_3133.JPG",
+    "outFile": "assets/images/user/photo_11_IMG_3133.jpg",
+    "width": 3600,
+    "height": 2400,
+    "aspect": "landscape",
+    "sizeKb": 337
+  },
+  {
+    "origFile": "IMG_3217.JPG",
+    "outFile": "assets/images/user/photo_13_IMG_3217.jpg",
+    "width": 1920,
+    "height": 2560,
+    "orientation": 1,
+    "aspect": "portrait",
+    "sizeKb": 218
+  },
+  {
+    "origFile": "IMG_5933.JPG",
+    "outFile": "assets/images/user/photo_20_IMG_5933.jpg",
+    "width": 4032,
+    "height": 3024,
+    "orientation": 6,
+    "aspect": "landscape",
+    "sizeKb": 673
+  },
+  {
+    "origFile": "IMG_7832.PNG",
+    "outFile": "assets/images/user/photo_21_IMG_7832.jpg",
+    "width": 1284,
+    "height": 2778,
+    "orientation": 1,
+    "aspect": "portrait",
+    "sizeKb": 98
+  },
+  {
+    "origFile": "IMG_7833.PNG",
+    "outFile": "assets/images/user/photo_22_IMG_7833.jpg",
+    "width": 1284,
+    "height": 2778,
+    "orientation": 1,
+    "aspect": "portrait",
+    "sizeKb": 91
+  },
+  {
+    "origFile": "SON_7752.jpeg",
+    "outFile": "assets/images/user/photo_23_SON_7752.jpg",
+    "width": 5472,
+    "height": 3648,
+    "orientation": 1,
+    "aspect": "landscape",
+    "sizeKb": 633
+  },
+  {
+    "origFile": "_MG_7753.jpeg",
+    "outFile": "assets/images/user/photo_24__MG_7753.jpg",
+    "width": 6240,
+    "height": 4160,
+    "orientation": 1,
+    "aspect": "landscape",
+    "sizeKb": 202
+  },
+  {
+    "origFile": "_MG_8241.jpeg",
+    "outFile": "assets/images/user/photo_25__MG_8241.jpg",
+    "width": 6240,
+    "height": 4160,
+    "orientation": 1,
+    "aspect": "landscape",
+    "sizeKb": 296
+  },
+  {
+    "origFile": "_MG_8294.jpeg",
+    "outFile": "assets/images/user/photo_26__MG_8294.jpg",
+    "width": 6240,
+    "height": 4160,
+    "orientation": 1,
+    "aspect": "landscape",
+    "sizeKb": 698
+  }
+]

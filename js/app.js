@@ -16,6 +16,18 @@ document.addEventListener("DOMContentLoaded", () => {
     currentLightboxIndex: 0,
     isPlayingMusic: false,
     hasCountedUp: false,
+    currentTrackIndex: 0,
+    playlist: (typeof CONFIG !== "undefined" && CONFIG.music && Array.isArray(CONFIG.music.playlist))
+      ? CONFIG.music.playlist
+      : [
+          {
+            id: "default",
+            title: (typeof CONFIG !== "undefined" && CONFIG.music) ? CONFIG.music.title : "Romantic Melody",
+            artist: (typeof CONFIG !== "undefined" && CONFIG.music) ? CONFIG.music.artist : "Love Melody",
+            src: (typeof CONFIG !== "undefined" && CONFIG.music) ? CONFIG.music.src : "assets/music/in_love_piano_strings.mp3",
+            tag: "Lãng mạn"
+          }
+        ],
     touchStartX: 0,
     touchStartY: 0,
     touchEndX: 0,
@@ -76,6 +88,11 @@ document.addEventListener("DOMContentLoaded", () => {
     musicTitle: document.getElementById("music-title"),
     musicArtist: document.getElementById("music-artist"),
     musicPlayIcon: document.getElementById("music-play-icon"),
+    btnNextTrack: document.getElementById("btn-next-track"),
+    btnTogglePlaylist: document.getElementById("btn-toggle-playlist"),
+    musicPlaylistPanel: document.getElementById("music-playlist-panel"),
+    playlistItems: document.getElementById("playlist-items"),
+    btnClosePlaylist: document.getElementById("btn-close-playlist"),
     btnCollapseMusic: document.getElementById("btn-collapse-music"),
     musicErrorTip: document.getElementById("music-error-tip"),
     // Lightbox
@@ -613,10 +630,70 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================================================================
-  // 10. MUSIC PLAYER
+  // 10. MUSIC PLAYER (LÃNG MẠN VỚI DANH SÁCH BÀI HÁT TÌNH YÊU)
   // =========================================================================
   function initMusicPlayer() {
     if (!DOM.audioElement) return;
+
+    // Khởi tạo danh sách bài hát lãng mạn
+    renderPlaylist();
+
+    function renderPlaylist() {
+      if (!DOM.playlistItems || !Array.isArray(state.playlist)) return;
+
+      DOM.playlistItems.innerHTML = state.playlist.map((track, idx) => {
+        const isActive = idx === state.currentTrackIndex;
+        return `
+          <li class="playlist-item ${isActive ? "is-active" : ""}" data-index="${idx}" role="option" aria-selected="${isActive}">
+            <div class="playlist-item-info">
+              <span class="playlist-item-title">${escapeHTML(track.title)}</span>
+              <div class="playlist-item-meta">
+                <span>${escapeHTML(track.artist)}</span>
+                ${track.tag ? `<span class="playlist-item-tag">${escapeHTML(track.tag)}</span>` : ""}
+              </div>
+            </div>
+            <span class="playlist-item-badge">${isActive ? "♥" : "▶"}</span>
+          </li>
+        `;
+      }).join("");
+
+      // Gắn sự kiện click chọn bài
+      const items = DOM.playlistItems.querySelectorAll(".playlist-item");
+      items.forEach(item => {
+        item.addEventListener("click", () => {
+          const idx = parseInt(item.getAttribute("data-index"), 10);
+          switchTrack(idx, true);
+        });
+      });
+    }
+
+    function switchTrack(idx, shouldPlay = false) {
+      if (idx < 0 || idx >= state.playlist.length) return;
+      state.currentTrackIndex = idx;
+      const track = state.playlist[idx];
+
+      DOM.audioElement.src = track.src;
+      if (DOM.musicTitle) DOM.musicTitle.textContent = track.title;
+      if (DOM.musicArtist) DOM.musicArtist.textContent = track.artist;
+
+      renderPlaylist();
+
+      if (shouldPlay) {
+        DOM.audioElement.play()
+          .then(() => {
+            hideMusicError();
+          })
+          .catch(err => {
+            console.warn("Audio play error:", err);
+            showMusicError();
+          });
+      }
+    }
+
+    function nextTrack(autoPlay = true) {
+      const nextIdx = (state.currentTrackIndex + 1) % state.playlist.length;
+      switchTrack(nextIdx, autoPlay);
+    }
 
     function togglePlay() {
       if (state.isPlayingMusic) {
@@ -649,22 +726,72 @@ document.addEventListener("DOMContentLoaded", () => {
       updatePlayIcons(false);
     });
 
+    // Tự động chuyển sang bài tiếp theo khi kết thúc bài hiện tại
+    DOM.audioElement.addEventListener("ended", () => {
+      nextTrack(true);
+    });
+
     DOM.audioElement.addEventListener("error", () => {
       showMusicError();
       state.isPlayingMusic = false;
       updatePlayIcons(false);
     });
 
-    // Disc click
+    // Đĩa quay click
     if (DOM.btnDiscToggle) DOM.btnDiscToggle.addEventListener("click", togglePlay);
     // Header music click
     if (DOM.btnHeaderMusic) DOM.btnHeaderMusic.addEventListener("click", togglePlay);
+
+    // Nút chuyển bài tiếp theo
+    if (DOM.btnNextTrack) {
+      DOM.btnNextTrack.addEventListener("click", (e) => {
+        e.stopPropagation();
+        nextTrack(true);
+      });
+    }
+
+    // Bật/tắt hộp danh sách bài hát
+    if (DOM.btnTogglePlaylist) {
+      DOM.btnTogglePlaylist.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (DOM.musicPlaylistPanel) {
+          const isHidden = DOM.musicPlaylistPanel.hasAttribute("hidden");
+          if (isHidden) {
+            DOM.musicPlaylistPanel.removeAttribute("hidden");
+          } else {
+            DOM.musicPlaylistPanel.setAttribute("hidden", "");
+          }
+        }
+      });
+    }
+
+    // Nút đóng danh sách bài hát
+    if (DOM.btnClosePlaylist) {
+      DOM.btnClosePlaylist.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (DOM.musicPlaylistPanel) {
+          DOM.musicPlaylistPanel.setAttribute("hidden", "");
+        }
+      });
+    }
+
+    // Đóng danh sách khi click ra ngoài
+    document.addEventListener("click", (e) => {
+      if (DOM.musicPlaylistPanel && !DOM.musicPlaylistPanel.hasAttribute("hidden")) {
+        if (!DOM.musicPlaylistPanel.contains(e.target) && (!DOM.btnTogglePlaylist || !DOM.btnTogglePlaylist.contains(e.target))) {
+          DOM.musicPlaylistPanel.setAttribute("hidden", "");
+        }
+      }
+    });
 
     // Minimize / Expand
     if (DOM.btnCollapseMusic) {
       DOM.btnCollapseMusic.addEventListener("click", (e) => {
         e.stopPropagation();
         DOM.musicPlayer.classList.toggle("is-collapsed");
+        if (DOM.musicPlaylistPanel && DOM.musicPlayer.classList.contains("is-collapsed")) {
+          DOM.musicPlaylistPanel.setAttribute("hidden", "");
+        }
       });
     }
   }

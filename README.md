@@ -12,7 +12,7 @@ Website album ảnh và nhật ký tình yêu cao cấp được thiết kế th
 - **17/10/2024**: Chính thức thành đôi (Ngày bắt đầu yêu nhau — mốc tính ngày yêu).
 - **23/11/2024**: Chuyến đi chơi xa đầu tiên — Tam Đảo mù sương.
 - **19/01/2025** (Trước Tết âm 2025): Bộ ảnh Áo Dài truyền thống đón xuân.
-- **05/07/2025**: Về nhà Quỳnh dịp Giỗ Tổ làng Thức Hoá.
+- **18/04/2025**: Sinh nhật ấm áp bên em cùng chiếc bánh kem chú heo hồng.
 - **17 - 18/10/2025**: Săn mây Tà Xùa mừng tròn 1 năm yêu nhau.
 - **09 - 11/10/2026**: Chinh phục Hà Giang hùng vĩ qua những khúc quanh tay áo.
 - **Hôm nay & Mãi về sau**: Hơn 2 năm gắn kết (730+ ngày) và trọn vẹn tương lai.
@@ -83,7 +83,7 @@ Truy cập trình duyệt: `http://localhost:5500`.
    - Cột mốc 2 (17/10/2024): Chính thức yêu nhau.
    - Cột mốc 3 (23/11/2024): Chuyến đi xa đầu tiên — Tam Đảo mù sương.
    - Cột mốc 4 (Tết 2025): Bộ ảnh Áo Dài trước Tết âm lịch 2025.
-   - Cột mốc 5 (05/07/2025): Giỗ Tổ làng Thức Hoá — Gặp mặt ở nhà Quỳnh.
+   - Cột mốc 5 (18/04/2025): Sinh nhật ấm áp bên em — Chiếc bánh kem heo hồng & nụ cười em.
    - Cột mốc 6 (17-18/10/2025): Săn mây Tà Xùa mừng 1 năm yêu nhau.
    - Cột mốc 7 (9, 10, 11/10/2026): Chinh phục Hà Giang hùng vĩ.
    - Cột mốc 8: Hơn 2 năm bên nhau và mọi ngày mai.

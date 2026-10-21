@@ -424,11 +424,25 @@
   <!-- I. MUSIC PLAYER FLOATING WIDGET -->
   <!-- ========================================================= -->
   <aside id="music-player" class="music-player is-collapsed" aria-label="Trình phát nhạc kỷ niệm">
-    <audio id="audio-element" preload="none" src="assets/music/our-song.mp3"></audio>
+    <audio id="audio-element" preload="none" src="assets/music/in_love_piano_strings.mp3"></audio>
+
+    <!-- Hộp chọn danh sách bài hát lãng mạn -->
+    <div id="music-playlist-panel" class="music-playlist-panel" hidden aria-label="Danh sách bài hát tình yêu">
+      <div class="playlist-header">
+        <div class="playlist-heading-group">
+          <span class="playlist-icon">♫</span>
+          <span class="playlist-title">Giai Điệu Lãng Mạn Cho Em</span>
+        </div>
+        <button id="btn-close-playlist" class="btn-close-playlist" type="button" aria-label="Đóng danh sách">✕</button>
+      </div>
+      <ul id="playlist-items" class="playlist-items" role="listbox" aria-label="Danh sách giai điệu">
+        <!-- Được hiển thị tự động từ CONFIG.music.playlist -->
+      </ul>
+    </div>
 
     <div class="music-card">
       <!-- Đĩa nhạc xoay tròn nghệ thuật -->
-      <button id="btn-disc-toggle" class="vinyl-disc-btn" type="button" aria-label="Bật hoặc dừng phát nhạc">
+      <button id="btn-disc-toggle" class="vinyl-disc-btn" type="button" aria-label="Bật hoặc dừng phát nhạc" title="Bật/Dừng phát nhạc">
         <div class="vinyl-disc" id="vinyl-disc">
           <div class="vinyl-groove"></div>
           <div class="vinyl-label">
@@ -445,9 +459,9 @@
       <!-- Thông tin bài hát -->
       <div class="music-details">
         <div class="music-title-marquee">
-          <span class="music-title" id="music-title">Romantic Piano Melody</span>
+          <span class="music-title" id="music-title">In Love (Giai Điệu Cho Em)</span>
         </div>
-        <span class="music-artist" id="music-artist">Acoustic Love Song</span>
+        <span class="music-artist" id="music-artist">Romantic Piano & Strings</span>
 
         <!-- Sóng nhạc nhảy nhót khi phát -->
         <div class="sound-wave-bars" id="sound-waves" aria-hidden="true">
@@ -458,17 +472,38 @@
         </div>
       </div>
 
-      <!-- Nút thu nhỏ / mở rộng -->
-      <button id="btn-collapse-music" class="btn-collapse-music" type="button" aria-label="Thu nhỏ hoặc mở rộng trình phát nhạc">
-        <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </button>
+      <!-- Cụm nút điều khiển: Đổi bài & Xem danh sách -->
+      <div class="music-controls-group">
+        <button id="btn-next-track" class="btn-music-action" type="button" aria-label="Bài hát lãng mạn tiếp theo" title="Đổi bài hát">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 4 15 12 5 20 5 4"></polygon>
+            <line x1="19" y1="5" x2="19" y2="19"></line>
+          </svg>
+        </button>
+
+        <button id="btn-toggle-playlist" class="btn-music-action" type="button" aria-label="Mở danh sách bài hát" title="Chọn bài hát">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <circle cx="3.5" cy="6" r="1.5" fill="currentColor"></circle>
+            <circle cx="3.5" cy="12" r="1.5" fill="currentColor"></circle>
+            <circle cx="3.5" cy="18" r="1.5" fill="currentColor"></circle>
+          </svg>
+        </button>
+
+        <!-- Nút thu nhỏ / mở rộng -->
+        <button id="btn-collapse-music" class="btn-collapse-music" type="button" aria-label="Thu nhỏ hoặc mở rộng trình phát nhạc">
+          <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
     </div>
 
     <!-- Thông báo lỗi khi không tìm thấy file nhạc -->
     <div id="music-error-tip" class="music-error-tip" role="status" aria-live="polite">
-      <span>Chưa tìm thấy file bài hát hoặc trình duyệt chặn phát.</span>
+      <span>Chưa tìm thấy file bài hát hoặc trình duyệt cần tương tác để phát.</span>
     </div>
   </aside>
 

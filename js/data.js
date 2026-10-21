@@ -5,7 +5,7 @@
  * - 17/10/2024: Chính thức yêu nhau
  * - 23/11/2024: Đi chơi xa đầu tiên — Tam Đảo
  * - Trước Tết âm 2025 (19/01/2025): Bộ ảnh Áo Dài đón Tết
- * - 05/07/2025: Giỗ Tổ làng Thức Hoá — Gặp mặt ở nhà Quỳnh
+ * - 18/04/2025: Sinh nhật ấm áp bên em (Bánh kem chú heo hồng)
  * - 17-18/10/2025: Săn mây Tà Xùa (Kỷ niệm 1 năm yêu)
  * - 09, 10, 11/10/2026: Chuyến đi Hà Giang hùng vĩ
  */
@@ -62,14 +62,14 @@ const timelineStories = [
   },
   {
     id: 5,
-    date: "2025-07-05",
-    displayDate: "05 Tháng 07, 2025",
-    title: "Về nhà Quỳnh — Giỗ Tổ làng Thức Hoá",
-    subtitle: "Meeting Family & Hometown",
-    description: "Một ngày đặc biệt và ý nghĩa khi Sơn về thăm quê hương và gia đình Quỳnh dịp Giỗ Tổ làng Thức Hoá. Sự ấm áp, gần gũi khiến Sơn thêm trân trọng người con gái bên cạnh.",
-    image: "assets/images/user/photo_14_IMG_3386.jpg",
-    location: "Làng Thức Hoá",
-    tag: "Thức Hoá",
+    date: "2025-04-18",
+    displayDate: "18 Tháng 04, 2025",
+    title: "Sinh nhật ấm áp bên em",
+    subtitle: "A Sweet Birthday with You",
+    description: "Sinh nhật tuổi mới ngập tràn hạnh phúc khi có em ở bên, cùng chiếc bánh kem chú heo hồng ngọt ngào và nụ cười rạng rỡ của người anh thương nhất.",
+    image: "assets/images/user/photo_15_IMG_3408.jpg",
+    location: "Hà Nội",
+    tag: "Sinh nhật 18.04",
     isScreenshot: false
   },
   {
@@ -174,12 +174,12 @@ const galleryMemories = [
   },
   {
     id: 7,
-    title: "Gặp mặt ở nhà Quỳnh — Thức Hoá",
-    date: "05.07.2025",
-    category: "special",
+    title: "Bữa tối ấm cúng trước thềm sinh nhật",
+    date: "17.04.2025",
+    category: "dates",
     image: "assets/images/user/photo_14_IMG_3386.jpg",
-    caption: "Về nhà Quỳnh dịp Giỗ Tổ làng Thức Hoá hôm 05/07/2025 đầy ắp kỷ niệm thân thương.",
-    location: "Làng Thức Hoá",
+    caption: "Bữa tối bên nhau ngày 17/04/2025, cùng chia sẻ những khoảnh khắc ngọt ngào trước thềm sinh nhật tuổi mới.",
+    location: "Hà Nội",
     aspect: "portrait"
   },
   {
@@ -224,12 +224,12 @@ const galleryMemories = [
   },
   {
     id: 12,
-    title: "Khoảnh khắc dịu dàng ở quê",
-    date: "05.07.2025",
-    category: "dates",
+    title: "Chiếc bánh kem heo hồng ngọt ngào",
+    date: "18.04.2025",
+    category: "special",
     image: "assets/images/user/photo_15_IMG_3408.jpg",
-    caption: "Một ngày bình yên về thăm nhà Quỳnh, nghe tiếng cười nói rộn ràng dịp Giỗ Tổ.",
-    location: "Làng Thức Hoá",
+    caption: "Sinh nhật ngày 18/04/2025 — chiếc bánh kem chú heo hồng siêu cưng và nụ cười ngọt ngào của Quỳnh.",
+    location: "Hà Nội",
     aspect: "portrait"
   },
   {
@@ -278,11 +278,11 @@ const galleryMemories = [
 const littleMoments = [
   {
     id: 1,
-    title: "Giỗ Tổ làng Thức Hoá (05/07/2025)",
-    date: "05.07.2025",
-    note: "Lần đầu về nhà Quỳnh dịp Giỗ Tổ, vừa hồi hộp vừa vui. Cả nhà đón tiếp ấm áp, đồ ăn ngon và Quỳnh cười suốt ngày.",
+    title: "Sinh nhật tuổi mới ấm áp (18/04/2025)",
+    date: "18.04.2025",
+    note: "Chiếc bánh kem heo hồng, chiếc mũ sinh nhật đáng yêu và nụ cười rạng ngời của Quỳnh — sinh nhật ấm áp và đáng nhớ nhất của anh.",
     image: "assets/images/user/photo_16_IMG_3421.jpg",
-    sticker: "🏡",
+    sticker: "🎂",
     rotation: "-2deg"
   },
   {

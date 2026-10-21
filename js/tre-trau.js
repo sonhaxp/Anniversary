@@ -11,15 +11,93 @@ document.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
   // =========================================================================
-  // 1. SOUND SYNTHESIZER (WEB AUDIO API - ZERO EXTERNAL ASSET DEPENDENCY)
+  // 1. SOUND SYNTHESIZER (MOBILE-BULLETPROOF DUAL ENGINE)
   // =========================================================================
   class SoundSynth {
     constructor() {
       this.ctx = null;
       this.isMuted = localStorage.getItem("treTrauSoundMuted") === "true";
+      this.isUnlocked = false;
+      this.wavFallbacks = {};
+      this.audioElements = {};
+      this.initFallbacks();
+      this.bindGlobalUnlock();
     }
 
-    init() {
+    // Generate tiny, pure-JS WAV data URIs as zero-asset fallback for mobile
+    initFallbacks() {
+      try {
+        const createWav = (sampleRate, samples) => {
+          const numSamples = samples.length;
+          const buffer = new ArrayBuffer(44 + numSamples * 2);
+          const view = new DataView(buffer);
+          view.setUint32(0, 0x52494646, false); // "RIFF"
+          view.setUint32(4, 36 + numSamples * 2, true);
+          view.setUint32(8, 0x57415645, false); // "WAVE"
+          view.setUint32(12, 0x666d7420, false); // "fmt "
+          view.setUint32(16, 16, true);
+          view.setUint16(20, 1, true); // PCM
+          view.setUint16(22, 1, true); // Mono
+          view.setUint32(24, sampleRate, true);
+          view.setUint32(28, sampleRate * 2, true);
+          view.setUint16(32, 2, true);
+          view.setUint16(34, 16, true);
+          view.setUint32(36, 0x64617461, false); // "data"
+          view.setUint32(40, numSamples * 2, true);
+          for (let i = 0; i < numSamples; i++) {
+            const s = Math.max(-1, Math.min(1, samples[i]));
+            view.setInt16(44 + i * 2, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+          }
+          let binary = "";
+          const bytes = new Uint8Array(buffer);
+          const chunk = 8192;
+          for (let i = 0; i < bytes.byteLength; i += chunk) {
+            binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+          }
+          return "data:audio/wav;base64," + btoa(binary);
+        };
+
+        const sr = 22050;
+        // 1. Pop (chirp)
+        const popSamples = new Float32Array(Math.floor(sr * 0.09));
+        for (let i = 0; i < popSamples.length; i++) {
+          const t = i / sr;
+          const freq = 450 + 400 * (t / 0.09);
+          popSamples[i] = Math.sin(2 * Math.PI * freq * t) * (1 - t / 0.09) * 0.45;
+        }
+        this.wavFallbacks.pop = createWav(sr, popSamples);
+
+        // 2. Boing (spring swoop)
+        const boingSamples = new Float32Array(Math.floor(sr * 0.16));
+        for (let i = 0; i < boingSamples.length; i++) {
+          const t = i / sr;
+          const freq = 220 + 400 * Math.sin(Math.PI * (t / 0.16));
+          boingSamples[i] = Math.sin(2 * Math.PI * freq * t) * (1 - t / 0.16) * 0.5;
+        }
+        this.wavFallbacks.boing = createWav(sr, boingSamples);
+
+        // Preload HTML5 Audio elements for instant, low-latency mobile playback
+        this.audioElements.pop = new Audio(this.wavFallbacks.pop);
+        this.audioElements.boing = new Audio(this.wavFallbacks.boing);
+        Object.values(this.audioElements).forEach((el) => {
+          el.preload = "auto";
+        });
+      } catch (e) {
+        console.warn("WAV synthesis fallback init error:", e);
+      }
+    }
+
+    bindGlobalUnlock() {
+      const unlockHandler = () => {
+        this.unlock();
+      };
+      ["touchstart", "touchend", "click", "pointerdown"].forEach((evt) => {
+        window.addEventListener(evt, unlockHandler, { passive: true });
+      });
+    }
+
+    unlock() {
+      // 1. Initialize & resume Web Audio AudioContext
       if (!this.ctx) {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
         if (AudioContext) {
@@ -27,8 +105,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
       if (this.ctx && this.ctx.state === "suspended") {
-        this.ctx.resume();
+        this.ctx.resume().catch(() => {});
       }
+
+      // 2. Warm up silent Web Audio buffer on mobile
+      if (this.ctx) {
+        try {
+          const buffer = this.ctx.createBuffer(1, 1, 22050);
+          const source = this.ctx.createBufferSource();
+          source.buffer = buffer;
+          source.connect(this.ctx.destination);
+          source.start(0);
+        } catch (e) {}
+      }
+
+      // 3. Unlock HTML5 Audio elements during user gesture
+      if (this.audioElements) {
+        Object.values(this.audioElements).forEach((el) => {
+          try {
+            el.load();
+          } catch (e) {}
+        });
+      }
+
+      this.isUnlocked = true;
     }
 
     toggleMute() {
@@ -37,118 +137,135 @@ document.addEventListener("DOMContentLoaded", () => {
       return this.isMuted;
     }
 
-    playPop() {
-      if (this.isMuted) return;
-      this.init();
-      if (!this.ctx) return;
+    // Play via HTML5 Audio fallback with instant response
+    playHtml5Fallback(name) {
+      if (this.isMuted || !this.wavFallbacks[name]) return;
       try {
+        const audio = this.audioElements[name] || new Audio(this.wavFallbacks[name]);
+        audio.currentTime = 0;
+        audio.volume = 0.6;
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {});
+        }
+      } catch (e) {}
+    }
+
+    // Safe runner: prioritizes Web Audio, falls back immediately on mobile gestures
+    _run(action, fallbackName) {
+      if (this.isMuted) return;
+      this.unlock();
+
+      let playedViaWebAudio = false;
+      if (this.ctx && this.ctx.state === "running") {
+        try {
+          action(Math.max(this.ctx.currentTime, 0.001) + 0.005);
+          playedViaWebAudio = true;
+        } catch (e) {
+          playedViaWebAudio = false;
+        }
+      }
+
+      // On mobile where AudioContext is suspended or restricted by silent switch,
+      // trigger HTML5 audio element immediately inside the current user gesture!
+      if (!playedViaWebAudio) {
+        if (this.ctx && this.ctx.state === "suspended") {
+          this.ctx.resume().catch(() => {});
+        }
+        if (fallbackName) {
+          this.playHtml5Fallback(fallbackName);
+        }
+      }
+    }
+
+    playPop() {
+      this._run((now) => {
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
         osc.type = "sine";
-        const now = this.ctx.currentTime;
         osc.frequency.setValueAtTime(450, now);
-        osc.frequency.exponentialRampToValueAtTime(800, now + 0.08);
-        gain.gain.setValueAtTime(0.2, now);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+        osc.frequency.exponentialRampToValueAtTime(820, now + 0.08);
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.exponentialRampToValueAtTime(0.25, now + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
         osc.connect(gain);
         gain.connect(this.ctx.destination);
         osc.start(now);
         osc.stop(now + 0.08);
-      } catch (e) {
-        console.warn("Audio pop error:", e);
-      }
+      }, "pop");
     }
 
     playBoing() {
-      if (this.isMuted) return;
-      this.init();
-      if (!this.ctx) return;
-      try {
+      this._run((now) => {
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
         osc.type = "triangle";
-        const now = this.ctx.currentTime;
         osc.frequency.setValueAtTime(220, now);
         osc.frequency.exponentialRampToValueAtTime(620, now + 0.15);
-        gain.gain.setValueAtTime(0.25, now);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.16);
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.exponentialRampToValueAtTime(0.3, now + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
         osc.connect(gain);
         gain.connect(this.ctx.destination);
         osc.start(now);
         osc.stop(now + 0.16);
-      } catch (e) {
-        console.warn("Audio boing error:", e);
-      }
+      }, "boing");
     }
 
     playAlert() {
-      if (this.isMuted) return;
-      this.init();
-      if (!this.ctx) return;
-      try {
-        const now = this.ctx.currentTime;
+      this._run((now) => {
         [523.25, 659.25, 783.99].forEach((freq, idx) => {
           const osc = this.ctx.createOscillator();
           const gain = this.ctx.createGain();
           osc.type = "sine";
-          osc.frequency.setValueAtTime(freq, now + idx * 0.07);
-          gain.gain.setValueAtTime(0.18, now + idx * 0.07);
-          gain.gain.exponentialRampToValueAtTime(0.01, now + idx * 0.07 + 0.14);
+          const startTime = now + idx * 0.07;
+          osc.frequency.setValueAtTime(freq, startTime);
+          gain.gain.setValueAtTime(0.001, startTime);
+          gain.gain.exponentialRampToValueAtTime(0.2, startTime + 0.01);
+          gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.14);
           osc.connect(gain);
           gain.connect(this.ctx.destination);
-          osc.start(now + idx * 0.07);
-          osc.stop(now + idx * 0.07 + 0.14);
+          osc.start(startTime);
+          osc.stop(startTime + 0.14);
         });
-      } catch (e) {
-        console.warn("Audio alert error:", e);
-      }
+      }, "pop");
     }
 
     playVictory() {
-      if (this.isMuted) return;
-      this.init();
-      if (!this.ctx) return;
-      try {
+      this._run((now) => {
         const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99, 1046.50];
-        const now = this.ctx.currentTime;
         notes.forEach((freq, idx) => {
           const osc = this.ctx.createOscillator();
           const gain = this.ctx.createGain();
           osc.type = "triangle";
           const startTime = now + idx * 0.09;
           osc.frequency.setValueAtTime(freq, startTime);
-          gain.gain.setValueAtTime(0.22, startTime);
-          gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.35);
+          gain.gain.setValueAtTime(0.001, startTime);
+          gain.gain.exponentialRampToValueAtTime(0.25, startTime + 0.01);
+          gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.35);
           osc.connect(gain);
           gain.connect(this.ctx.destination);
           osc.start(startTime);
           osc.stop(startTime + 0.35);
         });
-      } catch (e) {
-        console.warn("Audio victory error:", e);
-      }
+      }, "pop");
     }
 
     playDrama() {
-      if (this.isMuted) return;
-      this.init();
-      if (!this.ctx) return;
-      try {
+      this._run((now) => {
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
         osc.type = "sawtooth";
-        const now = this.ctx.currentTime;
         osc.frequency.setValueAtTime(110, now);
         osc.frequency.linearRampToValueAtTime(75, now + 0.4);
-        gain.gain.setValueAtTime(0.28, now);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.exponentialRampToValueAtTime(0.28, now + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
         osc.connect(gain);
         gain.connect(this.ctx.destination);
         osc.start(now);
         osc.stop(now + 0.45);
-      } catch (e) {
-        console.warn("Audio drama error:", e);
-      }
+      }, "boing");
     }
   }
 
@@ -396,11 +513,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateSoundIcon() {
-    if (DOM.soundIcon) {
-      DOM.soundIcon.innerHTML = sound.isMuted
+    const soundIcon = document.getElementById("sound-icon");
+    if (soundIcon) {
+      soundIcon.innerHTML = sound.isMuted
         ? '<i data-lucide="volume-x"></i>'
         : '<i data-lucide="volume-2"></i>';
-      if (window.lucide) lucide.createIcons({ root: DOM.soundIcon });
+      if (window.lucide) {
+        lucide.createIcons({ root: soundIcon });
+      }
     }
   }
 
@@ -446,6 +566,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function triggerDodge(event) {
     if (state.hasAccepted || state.dodgeCooldown || state.isMemeActive) return;
 
+    // Track dodge timestamp for accidental mis-click protection on mobile
+    state.lastDodgeTime = Date.now();
+
     // Fast, responsive 120ms cooldown
     state.dodgeCooldown = true;
     setTimeout(() => {
@@ -474,8 +597,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     calculateSafePositionAndMove(mode);
 
-    // Agree button gently scales up
-    const scaleFactor = 1 + Math.min(state.dodgesCount * 0.035, 0.4);
+    // Keep Agree button sleek & compact (subtle scale, max 1.05x instead of 1.4x)
+    const scaleFactor = 1 + Math.min(state.dodgesCount * 0.005, 0.05);
     DOM.btnAgree.style.transform = `scale(${scaleFactor})`;
 
     // Check meme trigger
@@ -511,7 +634,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const targetRight = targetLeft + btnRect.width;
       const targetBottom = targetTop + btnRect.height;
 
-      const buffer = 14;
+      const buffer = 32; // Generous distance buffer from agree button
       const overlapsAgree = !(
         targetRight < agreeLeftRel - buffer ||
         targetLeft > agreeRightRel + buffer ||
@@ -658,6 +781,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // 8. ACCEPTANCE & SUCCESS
   // =========================================================================
   function handleAgree() {
+    if (state.hasAccepted) return;
+
+    // Protection against rapid accidental taps on mobile:
+    // If the reject button dodged less than 450ms ago, the user was double-tapping to catch the dodging button!
+    if (Date.now() - (state.lastDodgeTime || 0) < 450) {
+      return;
+    }
+
     state.hasAccepted = true;
     sound.playVictory();
     dismissMemeEvent();
@@ -871,13 +1002,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================================================================
   // 11. TOAST HELPER
   // =========================================================================
-  function showToast(msg) {
+  function showToast(msg, duration = 2600) {
     if (!DOM.toast) return;
     DOM.toast.textContent = msg;
     DOM.toast.classList.add("show");
-    setTimeout(() => {
+    clearTimeout(DOM.toast._timer);
+    DOM.toast._timer = setTimeout(() => {
       DOM.toast.classList.remove("show");
-    }, 2600);
+    }, duration);
   }
 
   function escapeHTML(str) {
@@ -897,22 +1029,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. Start CTA
     if (DOM.btnStart) {
       DOM.btnStart.addEventListener("click", () => {
+        sound.unlock();
         sound.playPop();
         showScreen("game");
       });
     }
 
     // 2. Reject Button Dodge Handlers
+    // CRITICAL for Mobile: DO NOT call e.preventDefault() as that revokes User Activation on WebKit/Safari
     if (DOM.btnReject) {
       DOM.btnReject.addEventListener("mouseenter", triggerDodge);
 
       DOM.btnReject.addEventListener("pointerdown", (e) => {
-        e.preventDefault();
+        sound.unlock();
         triggerDodge(e);
       });
 
       DOM.btnReject.addEventListener("click", (e) => {
-        e.preventDefault();
+        sound.unlock();
         triggerDodge(e);
       });
     }
@@ -934,7 +1068,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. Agree Button
     if (DOM.btnAgree) {
-      DOM.btnAgree.addEventListener("click", handleAgree);
+      DOM.btnAgree.addEventListener("click", (e) => {
+        sound.unlock();
+        handleAgree(e);
+      });
     }
 
     // 4. Download Certificate
@@ -945,10 +1082,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // 5. Sound Toggle
     if (DOM.btnSoundToggle) {
       DOM.btnSoundToggle.addEventListener("click", () => {
+        sound.unlock();
         const isMuted = sound.toggleMute();
         updateSoundIcon();
-        showToast(isMuted ? "Đã tắt âm thanh 🔇" : "Đã bật âm thanh vui nhộn 🔊");
-        if (!isMuted) sound.playPop();
+        if (isMuted) {
+          showToast("Đã tắt âm thanh 🔇");
+        } else {
+          sound.playPop();
+          showToast("Đã bật âm thanh 🔊 (iPhone nhớ gạt cần rung sang Chuông nhé!)", 3800);
+        }
       });
     }
 

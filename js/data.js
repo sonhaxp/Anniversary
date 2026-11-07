@@ -8,6 +8,7 @@
  * - 18/04/2025: Sinh nhật ấm áp bên em (Bánh kem chú heo hồng)
  * - 17-18/10/2025: Săn mây Tà Xùa (Kỷ niệm 1 năm yêu)
  * - 09, 10, 11/10/2026: Chuyến đi Hà Giang hùng vĩ
+ * - 07/11/2026: Sinh nhật lần thứ 2 bên Quỳnh (Bếp Thái Koh Yam - Thái Hà)
  */
 
 // 1. DÒNG THỜI GIAN CÂU CHUYỆN (TIMELINE STORIES)
@@ -98,11 +99,23 @@ const timelineStories = [
   },
   {
     id: 8,
-    date: "2026-10-21",
+    date: "2026-11-07",
+    displayDate: "07 Tháng 11, 2026",
+    title: "Sinh nhật lần thứ 2 bên Quỳnh",
+    subtitle: "A Sweet Birthday with You",
+    description: "Sinh nhật lần thứ hai hai đứa đón cùng nhau tại Bếp Thái Koh Yam (Thái Hà). Bữa tối ấm cúng ngập tràn tiếng cười, chiếc bánh kem dâu tây ngọt ngào và bó hoa rực rỡ dành riêng cho cô gái anh yêu nhất.",
+    image: "assets/images/user/photo_27_quynh_birthday.jpg",
+    location: "Bếp Thái Koh Yam - Thái Hà",
+    tag: "Sinh nhật Quỳnh",
+    isScreenshot: false
+  },
+  {
+    id: 9,
+    date: "2026-11-07",
     displayDate: "Hôm nay & Mãi về sau",
     title: "Hơn 2 năm bên nhau & Mọi ngày mai",
     subtitle: "Forever & Always",
-    description: "Hơn 730 ngày kể từ ngày chính thức thành đôi, từ Tam Đảo, Tà Xùa đến Hà Giang... tình yêu của Sơn & Quỳnh vẫn vẹn nguyên và ngày một đong đầy hơn.",
+    description: "Hơn 750 ngày kể từ ngày chính thức thành đôi, từ Tam Đảo, Tà Xùa, Hà Giang cho đến những ngày sinh nhật ấm áp... tình yêu của Sơn & Quỳnh vẫn vẹn nguyên và ngày một đong đầy hơn.",
     image: "assets/images/user/photo_23_SON_7752.jpg",
     location: "Trái Tim Nhau",
     tag: "Tương lai",
@@ -271,6 +284,26 @@ const galleryMemories = [
     caption: "Những dòng tin nhắn đầu tiên ngày 10/06/2024 — nơi mọi cảm xúc bắt đầu nở hoa.",
     location: "Màn hình tin nhắn",
     aspect: "portrait"
+  },
+  {
+    id: 17,
+    title: "Sinh nhật tuổi mới của Quỳnh",
+    date: "07.11.2026",
+    category: "special",
+    image: "assets/images/user/photo_27_quynh_birthday.jpg",
+    caption: "Sinh nhật lần thứ 2 đón tuổi mới cùng nhau tại Bếp Thái Koh Yam — chiếc bánh kem dâu tây ngọt ngào và nụ cười rạng rỡ của em.",
+    location: "Bếp Thái Koh Yam - Thái Hà",
+    aspect: "portrait"
+  },
+  {
+    id: 18,
+    title: "Bó hoa hồng pastel tặng em",
+    date: "07.11.2026",
+    category: "moments",
+    image: "assets/images/user/photo_28_birthday_flowers.jpg",
+    caption: "Bó hoa pastel rực rỡ điểm xuyết chú thỏ bông nhỏ xinh xắn anh dành tặng riêng cho Quỳnh ngày sinh nhật.",
+    location: "Bếp Thái Koh Yam",
+    aspect: "portrait"
   }
 ];
 
@@ -311,6 +344,15 @@ const littleMoments = [
     image: "assets/images/user/photo_04_IMG_1544.jpg",
     sticker: "🏍️",
     rotation: "2.2deg"
+  },
+  {
+    id: 5,
+    title: "Sinh nhật lần thứ 2 bên Quỳnh (07/11/2026)",
+    date: "07.11.2026",
+    note: "Bữa tối ấm cúng tại Bếp Thái Koh Yam, chiếc bánh kem dâu xinh xắn và bó hoa ngọt ngào. Chúc em tuổi mới luôn rạng rỡ và mãi bình yên bên anh!",
+    image: "assets/images/user/photo_27_quynh_birthday.jpg",
+    sticker: "🎂",
+    rotation: "-1.8deg"
   }
 ];
 

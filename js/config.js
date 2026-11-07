@@ -84,7 +84,8 @@ const CONFIG = {
     content: [
       "Nhớ lại ngày 10/06/2024, khi dòng tin nhắn đầu tiên được gửi đi, anh chẳng thể ngờ rằng đó lại là khởi đầu cho câu chuyện tình yêu đẹp nhất cuộc đời mình. Để rồi đến ngày 17/10/2024, hai đứa chính thức nắm tay nhau bước vào một hành trình mới.",
       "Anh nhớ như in chuyến đi xa đầu tiên của chúng mình lên Tam Đảo ngày 23/11/2024 trong làn sương mờ lành lạnh; nhớ bộ ảnh Áo Dài truyền thống trước Tết âm năm 2025 khi em cười rạng rỡ như đóa hoa mai nở rộ; nhớ ngày sinh nhật 18/04/2025 khi em tặng anh chiếc bánh kem chú heo hồng ngọt ngào; và nhớ cả biển mây Tà Xùa 17-18/10/2025 khi hai đứa cùng đón kỷ niệm 1 năm gắn bó.",
-      "Và mới đây thôi, chuyến đi Hà Giang những ngày 9, 10, 11/10/2026 trên những cung đèo hùng vĩ, tay anh vẫn luôn nắm chặt tay em qua từng khúc quanh. Để rồi hôm nay, ngày 07/11/2026, là lần thứ hai anh được đón sinh nhật cùng em — cùng ngắm nụ cười em rạng rỡ bên chiếc bánh kem và bó hoa ngọt ngào. Cảm ơn Quỳnh vì đã cùng anh viết nên những trang thanh xuân rực rỡ nhất.",
+      "Và mới đây thôi, chuyến đi Hà Giang những ngày tháng 10/2026 trên những cung đèo hùng vĩ — nơi anh đã gom hết can đảm để trao em lời cầu hôn thiêng liêng (10/10). Để rồi hôm nay, ngày 07/11/2026, là lần thứ hai anh được đón sinh nhật cùng em bên chiếc bánh kem và bó hoa rực rỡ.",
+      "Nghĩ về từ năm sau mà anh vừa buồn cười vừa 'đau đầu ngọt ngào': chỉ chưa đầy một tháng mà dồn dập tận 4 ngày lễ lớn — 10/10 kỷ niệm Cầu hôn, 17/10 ngày Chính thức yêu nhau, 20/10 ngày Phụ nữ Việt Nam, và 07/11 Sinh nhật em. Chưa biết phải nghĩ bao nhiêu món quà cho xuể, nhưng anh biết chắc chắn mình là người đàn ông hạnh phúc nhất khi có em ở bên.",
       "Album này là nơi anh gom nhặt từng nụ cười, từng chuyến đi và từng khoảnh khắc bình dị có nhau. Mong rằng chặng đường phía trước, dù có bao nhiêu thử thách, chúng mình vẫn sẽ mãi đồng hành, thương yêu và cùng nhau đi đến tận cùng."
     ],
     closing: "Thương em thật nhiều,",
@@ -99,7 +100,7 @@ const CONFIG = {
     { title: "Bộ ảnh Áo Dài đón Tết", date: "2025-01-19", note: "Trước Tết âm năm 2025" },
     { title: "Sinh nhật ấm áp", date: "2025-04-18", note: "Đón tuổi mới cùng em & chiếc bánh kem heo hồng" },
     { title: "Săn mây Tà Xùa", date: "2025-10-17", note: "Kỷ niệm tròn 1 năm yêu nhau" },
-    { title: "Hà Giang hùng vĩ", date: "2026-10-09", note: "Chuyến đi 9, 10, 11/10/2026" },
+    { title: "Hà Giang & Cầu hôn", date: "2026-10-10", note: "Lời cầu hôn thiêng liêng giữa đại ngàn Hà Giang" },
     { title: "Sinh nhật Diễm Quỳnh", date: "2026-11-07", note: "Sinh nhật lần thứ 2 đón tuổi mới cùng em" }
   ]
 };

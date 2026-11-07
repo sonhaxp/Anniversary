@@ -14,8 +14,9 @@ Website album ảnh và nhật ký tình yêu cao cấp được thiết kế th
 - **19/01/2025** (Trước Tết âm 2025): Bộ ảnh Áo Dài truyền thống đón xuân.
 - **18/04/2025**: Sinh nhật ấm áp bên em cùng chiếc bánh kem chú heo hồng.
 - **17 - 18/10/2025**: Săn mây Tà Xùa mừng tròn 1 năm yêu nhau.
-- **09 - 11/10/2026**: Chinh phục Hà Giang hùng vĩ qua những khúc quanh tay áo.
-- **Hôm nay & Mãi về sau**: Hơn 2 năm gắn kết (730+ ngày) và trọn vẹn tương lai.
+- **09 - 11/10/2026**: Chinh phục Hà Giang hùng vĩ & Lời cầu hôn thiêng liêng (10/10/2026).
+- **07/11/2026**: Sinh nhật lần thứ 2 bên Quỳnh tại Bếp Thái Koh Yam — Thái Hà (Và câu chuyện 'Combo 4 ngày lễ/tháng' từ năm sau).
+- **Hôm nay & Mãi về sau**: Hơn 2 năm gắn kết (750+ ngày) và trọn vẹn tương lai.
 
 ---
 
@@ -152,6 +153,8 @@ Mở file `js/config.js`:
 1. Thả file nhạc định dạng `.mp3` của bạn vào thư mục `assets/music/`.
 2. Mở `js/config.js` để thêm hoặc sửa đổi danh sách playlist.
 
-# Anniversary
+---
 
-update
+### Cập nhật gần nhất (07/11/2026):
+- Bổ sung sự kiện **Sinh nhật Diễm Quỳnh (lần thứ 2 đón cùng nhau)** tại Bếp Thái Koh Yam - Thái Hà.
+- Thêm ảnh đôi bánh kem và ảnh bó hoa thỏ bông vào Timeline, Gallery và Scrapbook.

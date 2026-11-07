@@ -89,12 +89,12 @@ const timelineStories = [
     id: 7,
     date: "2026-10-10",
     displayDate: "09 - 11 Tháng 10, 2026",
-    title: "Chinh phục Hà Giang hùng vĩ",
-    subtitle: "Across the Winding Passes",
-    description: "Chuyến đi Hà Giang tuyệt đẹp những ngày tháng 10 vừa qua. Vượt qua những con đèo quanh co, ngắm hoa tam giác mạch và cùng nhau lưu giữ nụ cười hạnh phúc nhất.",
+    title: "Chinh phục Hà Giang & Lời Cầu Hôn",
+    subtitle: "Across the Passes & A Sacred Promise",
+    description: "Chuyến đi Hà Giang tuyệt đẹp những ngày tháng 10. Vượt qua những khúc cua tay áo hùng vĩ, và đặc biệt là khoảnh khắc thiêng liêng ngày 10/10 khi anh trao em lời cầu hôn chân thành nhất giữa đất trời.",
     image: "assets/images/user/photo_01_IMG_0783.jpg",
     location: "Hà Giang",
-    tag: "Hà Giang 2026",
+    tag: "10.10 Cầu hôn",
     isScreenshot: false
   },
   {
@@ -103,7 +103,7 @@ const timelineStories = [
     displayDate: "07 Tháng 11, 2026",
     title: "Sinh nhật lần thứ 2 bên Quỳnh",
     subtitle: "A Sweet Birthday with You",
-    description: "Sinh nhật lần thứ hai hai đứa đón cùng nhau tại Bếp Thái Koh Yam (Thái Hà). Bữa tối ấm cúng ngập tràn tiếng cười, chiếc bánh kem dâu tây ngọt ngào và bó hoa rực rỡ dành riêng cho cô gái anh yêu nhất.",
+    description: "Sinh nhật lần thứ hai hai đứa đón cùng nhau tại Bếp Thái Koh Yam (Thái Hà). Bữa tối ấm cúng ngập tràn tiếng cười, chiếc bánh kem dâu tây ngọt ngào và bó hoa rực rỡ dành riêng cho cô gái anh yêu nhất. Đi kèm là một 'cơn đau đầu ngọt ngào': từ năm sau, chưa đầy 1 tháng sẽ có liên hoàn 4 ngày trọng đại (10/10 Cầu hôn, 17/10 Ngày yêu, 20/10 Phụ nữ VN, 07/11 Sinh nhật em) — nghĩ chuyện tặng quà gì thôi đã thấy đau đầu! =))",
     image: "assets/images/user/photo_27_quynh_birthday.jpg",
     location: "Bếp Thái Koh Yam - Thái Hà",
     tag: "Sinh nhật Quỳnh",
@@ -353,6 +353,15 @@ const littleMoments = [
     image: "assets/images/user/photo_27_quynh_birthday.jpg",
     sticker: "🎂",
     rotation: "-1.8deg"
+  },
+  {
+    id: 6,
+    title: "Fact đau đầu: 'Combo 4 ngày lễ trong 1 tháng'",
+    date: "Fact từ năm sau",
+    note: "Nghĩ về từ năm sau mà toát mồ hôi hột: Chưa đầy 1 tháng mà dính 4 ngày lễ liên tiếp: 10/10 Cầu hôn, 17/10 Ngày yêu, 20/10 Phụ nữ VN, 07/11 Sinh nhật em... Chưa biết tặng quà gì, nghĩ thôi đã đau đầu! =))",
+    image: "assets/images/user/photo_28_birthday_flowers.jpg",
+    sticker: "🤯",
+    rotation: "2.1deg"
   }
 ];
 

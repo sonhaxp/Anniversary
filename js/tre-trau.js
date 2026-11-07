@@ -311,6 +311,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // 14+ Rich & Hilarious Marriage Proposal Banter Events (Sơn & Quỳnh) with Lucide Icons
   const memeEvents = [
     {
+      id: "combo-le-loc",
+      badge: "COMBO 4 NGÀY LỄ / THÁNG",
+      badgeIcon: "gift",
+      iconName: "gift",
+      colorClass: "avatar-rose",
+      title: "Cơn đau đầu ngọt ngào!",
+      body: "Từ năm sau, chưa đầy 1 tháng mà Sơn phải chạy deadline quà cáp 4 ngày lễ lớn: 10/10 Cầu hôn, 17/10 Chính thức yêu, 20/10 Phụ nữ VN, 07/11 Sinh nhật Quỳnh! Nghĩ quà thôi đã đau đầu muốn xỉu, em mau gật đầu cưới để gộp bớt quà đi! 😆🎁",
+      sound: "alert"
+    },
+    {
       id: "nop-luong",
       badge: "TỰ NGUYỆN NỘP LƯƠNG 100%",
       badgeIcon: "wallet",
